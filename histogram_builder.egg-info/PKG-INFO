@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: histogram_builder
+Version: 0.1.0
+Summary: Python library to create and manage histograms
+Author-email: Julio Gil Gutierrez <julgut99@email.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# histogram_builder
+
+A Python library to create and manage histograms
+
+## Installation
+
+```bash
+pip install .
+```
+
+## Usage
+
+```python
+import my_library
+
+print(my_library.hello_world())
+```

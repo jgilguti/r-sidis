@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "histogram_builder"
+version = "0.1.0"
+description = "Python library to create and manage histograms"
+authors = [{ name="Julio Gil Gutierrez", email="julgut99@email.com" }]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+dependencies = []
