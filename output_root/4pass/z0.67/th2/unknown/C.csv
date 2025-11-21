@@ -1,0 +1,4 @@
+run,run_type,filename,BCM2_Q,ps5,ps6,h_esing_Eff,p_esing_Eff,hDead,pDead
+24044,HMSDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_24044_-1.root,14590.6,-1,-1,0.9986,-999,1,1
+24046,SHMSDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_24046_-1.root,14894.2,-1,-1,-999,0.9648,1,1
+24242,HMSDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_24242_-1.root,18163.7,-1,-1,0.9986,-999,1,1

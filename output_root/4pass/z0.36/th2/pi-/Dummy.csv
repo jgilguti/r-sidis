@@ -1,0 +1,12 @@
+run,run_type,filename,BCM2_Q,ps5,ps6,h_esing_Eff,p_esing_Eff,hDead,pDead
+23879,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23879_-1.root,27.905,-1,1,0.9985,0.9057,1,1
+23890,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23890_-1.root,19.101,-1,1,0.9988,0.8718,1,1
+23891,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23891_-1.root,14.984,-1,1,0.9994,0.9286,1,1
+23901,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23901_-1.root,10.685,-1,1,0.9977,0.9412,1,1
+23902,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23902_-1.root,35.807,-1,1,0.9986,0.8815,1,1
+23903,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23903_-1.root,4.76,-1,1,0.9977,0.9091,1,1
+23948,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23948_-1.root,45.08,-1,1,0.9988,0.9368,1,1
+23949,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23949_-1.root,8.138,-1,1,0.9995,0.9628,1,1
+23955,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23955_-1.root,31.615,-1,1,0.9988,0.9398,1,1
+23956,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_23956_-1.root,11.018,-1,1,0.9996,0.9619,1,1
+24600,PI-SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_24600_-1.root,72.708,-1,1,0.9958,0.9877,1,1

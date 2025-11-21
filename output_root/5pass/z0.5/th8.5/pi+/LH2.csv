@@ -1,0 +1,8 @@
+run,run_type,filename,BCM2_Q,ps5,ps6,h_esing_Eff,p_esing_Eff,hDead,pDead
+25384,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25384_-1.root,43.1,-1,1,0.9982,0.9935,1,1
+25385,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25385_-1.root,123.73,-1,1,0.998,0.9901,1,1
+25386,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25386_-1.root,122.22,-1,1,0.9981,0.9916,1,1
+25387,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25387_-1.root,104.22,1,-1,0.9984,0.9903,1,1
+25388,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25388_-1.root,52.713,-1,1,0.9987,0.9927,1,1
+25389,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25389_-1.root,51.962,-1,1,0.9985,0.9925,1,1
+25464,PI+SIDIS,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25464_-1.root,130.5,-1,1,0.9837,0.9936,1,1

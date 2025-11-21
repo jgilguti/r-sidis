@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+histogram_builder/__init__.py
+histogram_builder/core.py
+histogram_builder.egg-info/PKG-INFO
+histogram_builder.egg-info/SOURCES.txt
+histogram_builder.egg-info/dependency_links.txt
+histogram_builder.egg-info/top_level.txt

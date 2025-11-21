@@ -1,0 +1,11 @@
+# Ignore large data folders
+pass0/
+SIMC/
+
+# Ignore large data files (optional but recommended)
+*.root
+*.hdf5
+
+# macOS junk
+.DS_Store
+
