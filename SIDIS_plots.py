@@ -7,20 +7,17 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import sys
 
-def construct_script_path(pass_energy, z_value, th_value, polarity, target):
+def construct_script_path(pass_energy, th_value, z_value, polarity, target):
     # Determine the path of the plots script
     return os.path.join(
         f"{pass_energy}pass",
-        f"z{z_value}",
         f"th{th_value}",
+        f"z{z_value}",
         f"pi{polarity}",
         f"SIDIS_{target}.py"
     )
 
 def run_script_and_save_figs(script_path, pdf_filename, prevent_show=True, prevent_close=False):
-    """
-    Run a Python script that produces plots and save all figures to a single PDF.
-    """
     if not os.path.exists(script_path):
         raise FileNotFoundError(f"Script not found: {script_path}")
 
@@ -66,13 +63,13 @@ def run_script_and_save_figs(script_path, pdf_filename, prevent_show=True, preve
 def main():
     # Interactive input
     pass_energy = input("Enter pass energy: ").strip()
-    z_value = input("Enter z value: ").strip()
     th_value = input("Enter θ value: ").strip()
+    z_value = input("Enter z value: ").strip()
     polarity = input("Enter polarity (+ or -): ").strip()
     target = input("Enter target (LH2, LD2, Carbon, Copper): ").strip()
 
     # Construct path to the analysis script
-    script_path = construct_script_path(pass_energy, z_value, th_value, polarity, target)
+    script_path = construct_script_path(pass_energy, th_value, z_value, polarity, target)
     print(f"\nRunning script: {script_path}")
 
     # PDF output in the current working directory
@@ -81,7 +78,7 @@ def main():
 
     pdf_filename = os.path.join(
         output_dir,
-        f"{target}_{pass_energy}pass_z{z_value}_th{th_value}_pi{polarity}.pdf"
+        f"{target}_{pass_energy}pass_th{th_value}_z{z_value}_pi{polarity}.pdf"
     )
     print(f"Output PDF: {pdf_filename}\n")
 

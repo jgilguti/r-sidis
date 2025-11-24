@@ -1,0 +1,14 @@
+run,run_type,filename,BCM2_Q,ps5,ps6,h_esing_Eff,p_esing_Eff,hDead,pDead
+25146,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25146_-1.root,73.537,-1,1,0.9981,0.9908,1,1
+25147,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25147_-1.root,20.053,-1,1,0.9986,0.9897,1,1
+25148,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25148_-1.root,62.796,-1,1,0.9984,0.9911,1,1
+25149,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25149_-1.root,58.85,-1,1,0.9984,0.9896,1,1
+25150,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25150_-1.root,80.73,1,-1,0.9983,0.9906,1,1
+25151,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25151_-1.root,45.241,-1,1,0.9986,0.9911,1,1
+25167,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25167_-1.root,74.796,-1,1,0.9981,0.9905,1,1
+25168,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25168_-1.root,85.631,-1,1,0.9984,0.9912,1,1
+25169,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25169_-1.root,72.752,-1,1,0.9982,0.9907,1,1
+25170,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25170_-1.root,45.072,-1,1,0.9987,0.9922,1,1
+25154,dummy,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25154_-1.root,63.902,-1,1,0.9984,0.9911,1,1
+25171,dummy,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/pass0/ROOTfiles/skimmed_coin_replay_production_25171_-1.root,58.466,-1,1,0.9983,0.9919,1,1
+,sim,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/SIMC/LH2/rsidis_LH2_e5p_th2p0_z0p67_pi-.root,,,,,
