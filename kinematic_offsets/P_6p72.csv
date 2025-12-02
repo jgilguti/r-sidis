@@ -1,0 +1,4 @@
+run,run_type,filename,BCM2_Q,ps5,ps6,h_esing_Eff,p_esing_Eff,hDead,pDead
+25476,data,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/kinematic_offsets/ROOTfiles/coin_replay_production_25476_-1.root,72.429,-1,1,1,1,1,1
+25475,dummy,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/kinematic_offsets/ROOTfiles/coin_replay_production_25475_-1.root,65.338,-1,1,1,1,1,1
+,sim,/Users/juliogutierrez/OneDrive - University of Tennessee/R-sidis_analysis/kinematic_offsets/SIMC/recon_hcana_rsidis_heep_LH2_4p62_26p395_-6p72_18p56.root,,,,,

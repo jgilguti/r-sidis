@@ -1,0 +1,188 @@
+import uproot
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+import os
+import awkward as ak
+
+
+replay_file_form = "/cache/hallc/c-rsidis/analysis/replays/pass0/coin_replay_production_{}_-1.root"
+
+run_list = list(range(23853,25603))
+
+# Cuts
+adcMultCut = 1
+xmin, xmax = 2, 25
+ymin, ymax = 2, 25
+emin, emax = 0.7, 2.0
+dpmin, dpmax = -10, 22
+
+# Histogram config
+nbins = 80
+pulse_min, pulse_max = 1, 161
+
+output_dir = "pngcer_plots"
+os.makedirs(output_dir, exist_ok=True)
+
+
+def poisson_like(x, A, mean, scale):
+    """
+    f(x) = A * (mean/scale)^(x/scale) * exp(-(mean/scale)) / Gamma((x/scale)+1)
+    """
+    from scipy.special import gamma
+    x = np.array(x)
+    k = x / scale
+    return A * (mean/scale)**k * np.exp(-(mean/scale)) / gamma(k + 1)
+
+
+def pmt_mask(pmt, gmult, xAtCer, yAtCer):
+    """
+    Apply PMT-specific cuts equivalent to your ROOT code.
+    """
+    # multiplicity == 1 for this PMT
+    mask = (gmult[:, pmt] == adcMultCut)
+
+    # all other PMTs multiplicity == 0
+    others = np.delete(gmult, pmt, axis=1)
+    mask &= np.all(others == 0, axis=1)
+
+    # geometric PMT region cuts
+    if pmt == 0:   # +x +y
+        mask &= (xmin < xAtCer) & (xAtCer < xmax) & (ymin < yAtCer) & (yAtCer < ymax)
+    elif pmt == 1: # +x -y
+        mask &= (xmin < xAtCer) & (xAtCer < xmax) & (-ymax < yAtCer) & (yAtCer < -ymin)
+    elif pmt == 2: # -x +y
+        mask &= (-xmax < xAtCer) & (xAtCer < -xmin) & (ymin < yAtCer) & (yAtCer < ymax)
+    elif pmt == 3: # -x -y
+        mask &= (-xmax < xAtCer) & (xAtCer < -xmin) & (-ymax < yAtCer) & (yAtCer < -ymin)
+
+    return mask
+
+
+
+#############################################
+# MAIN LOOP OVER RUNS (combined PMT plots)
+#############################################
+
+results = []
+
+for run in run_list:
+    file_path = replay_file_form.format(run)
+
+    if not os.path.exists(file_path):
+        print(f"[WARNING] File not found: {file_path}")
+        continue
+
+    print(f"\n>>> Processing run {run}")
+
+    with uproot.open(file_path) as f:
+        tree = f["T"]
+
+        # Load branches
+        gmult = tree["P.ngcer.goodAdcMult"].array(library="ak")
+        gmult = ak.pad_none(gmult, 4, axis=1)
+        gmult = ak.fill_none(gmult, 0)
+        gmult = ak.to_numpy(gmult)
+
+        pulse = tree["P.ngcer.goodAdcPulseInt"].array(library="ak")
+        pulse = ak.pad_none(pulse, 4, axis=1)
+        pulse = ak.fill_none(pulse, 0)
+        pulse = ak.to_numpy(pulse)
+
+        xAtCer = tree["P.ngcer.xAtCer"].array(library="np")
+        yAtCer = tree["P.ngcer.yAtCer"].array(library="np")
+        etot = tree["P.cal.etottracknorm"].array(library="np")
+        dp = tree["P.gtr.dp"].array(library="np")
+
+
+    # Global cuts
+    mask_global = (
+        (etot > emin) & (etot < emax) &
+        (dp > dpmin) & (dp < dpmax)
+    )
+
+    # Apply global mask to all arrays
+    gmult = gmult[mask_global]
+    pulse = pulse[mask_global]
+    xAtCer = xAtCer[mask_global]
+    yAtCer = yAtCer[mask_global]
+
+    # Create figure with 4 subplots
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    axes = axes.flatten()  # makes axes[0], axes[1], axes[2], axes[3] easy to use
+
+    # Process each PMT
+    for pmt in range(4):
+        pmtmask = pmt_mask(pmt, gmult, xAtCer, yAtCer)
+        values = pulse[pmtmask][:, pmt]
+
+        ax = axes[pmt]
+
+        if len(values) < 50:
+            print(f"PMT {pmt+1}: Not enough events ({len(values)}) — skipping")
+            ax.text(0.5, 0.5, "Not enough events", ha='center', va='center', fontsize=12)
+            ax.set_title(f"PMT {pmt+1}")
+            continue
+
+        # Histogram
+        counts, edges = np.histogram(values, bins=nbins, range=(pulse_min, pulse_max))
+        centers = 0.5*(edges[:-1] + edges[1:])
+
+        # Fit
+        p0 = [2000, 50, 3]  # initial parameters
+        try:
+            popt, pcov = curve_fit(poisson_like, centers, counts, p0=p0, maxfev=10000)
+            A, mean, scale = popt
+            fitvals = poisson_like(centers, *popt)
+            residuals = counts - fitvals
+            chi2 = np.sum((residuals)**2 / np.where(fitvals==0, 1, fitvals))
+            ndf = len(counts) - len(popt)  # number of bins minus number of fit parameters
+            chi2_ndf = chi2 / ndf
+
+        except Exception as e:
+            print(f"Fit failed for PMT {pmt+1}: {e}")
+            ax.text(0.5, 0.5, "Fit failed", ha='center', va='center', fontsize=12)
+            ax.set_title(f"PMT {pmt+1}")
+            continue
+
+        # Plot
+        ax.errorbar(centers, counts, yerr=np.sqrt(counts), fmt="o", label="Data")
+        ax.plot(centers, fitvals, "r-", label="Fit")
+        ax.set_title(f"PMT {pmt+1}\nCalib={scale:.3f}, Chi2/ndf={chi2_ndf:.2f}")
+        ax.set_xlabel("goodAdcPulseInt")
+        ax.set_ylabel("Counts")
+        ax.legend()
+
+        # Store results
+        results.append({
+            "run": run,
+            "pmt": pmt+1,
+            "calibration_constant": scale,
+            "chi2": chi2,
+            "chi2_ndf": chi2_ndf
+        })
+
+    # Save combined figure for this run
+    png_name = f"{output_dir}/run{run}.png"
+    plt.tight_layout()
+    plt.savefig(png_name, dpi=150)
+    plt.close()
+
+
+    # Store results
+    results.append({
+        "run": run,
+        "pmt": pmt+1,
+        "calibration_constant": scale,
+        "chi2": chi2
+    })
+
+#############################################
+# SAVE CSV SUMMARY
+#############################################
+
+df = pd.DataFrame(results)
+df.to_csv("pngcer_calibration_summary.csv", index=False)
+print("\nSaved results → pngcer_calibration_summary.csv")
+print(f"Saved plots → {output_dir}/run*_pmt*.png")
