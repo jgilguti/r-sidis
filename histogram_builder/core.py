@@ -32,7 +32,7 @@ def data_cuts(df):
         ((df["P_gtr_p"] <= 2.9) | (df["P_hgcer_npeSum"] > 1)) & # Or P>2.9 Gev
         (df["P_cal_etottracknorm"] < 0.8) &
         (abs(df["CTime_ePiCoinTime_ROC1"] - 51.24)< 2) &
-        (df["pt"]>0.32) & (df["pt"]<0.48) # cut for p_T binning
+        (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
     )
 
     return df[mask]
@@ -44,12 +44,12 @@ def random_cuts(df):
         (df["H_cal_etottracknorm"] > 0.7) &
         (df["H_cer_npeSum"] > 2) &
         (df["P_gtr_dp"] > -10) & (df["P_gtr_dp"] < 22) &
-        (df["P_aero_npeSum"] > 1) &
+        (df["P_aero_npeSum"] > 2) &
         ((df["P_gtr_p"] <= 2.9) | (df["P_hgcer_npeSum"] > 1)) & # Or P>2.9 Gev
         (df["P_cal_etottracknorm"] < 0.8) &
         (df["CTime_ePiCoinTime_ROC1"]>30) & 
         (df["CTime_ePiCoinTime_ROC1"]<46) &
-        (df["pt"]>0.32) & (df["pt"]<0.48) # cut for p_T binning
+        (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
     )
 
     return df[mask]
@@ -60,7 +60,7 @@ def sim_cuts(df):
     mask = (
         (df["hsdelta"] > -8) & (df["hsdelta"] < 8) &
         (df["ssdelta"] > -10) & (df["ssdelta"] < 22) &
-        (np.sqrt(df["pt2"])>0.32) & (np.sqrt(df["pt2"])<0.48) # cut for p_T binning
+        (np.sqrt(df["pt2"])>0.3) & (np.sqrt(df["pt2"])<0.4) # cut for p_T binning
     )
     return df[mask]
 
