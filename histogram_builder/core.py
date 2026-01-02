@@ -31,8 +31,8 @@ def data_cuts(df):
         (df["P_aero_npeSum"] > 2) &
         ((df["P_gtr_p"] <= 2.9) | (df["P_hgcer_npeSum"] > 1)) & # Or P>2.9 Gev
         (df["P_cal_etottracknorm"] < 0.8) &
-        (abs(df["CTime_ePiCoinTime_ROC1"] - 51.24)< 2) &
-        (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
+        (abs(df["CTime_ePiCoinTime_ROC1"] - 51.24)< 2) 
+        # & (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
     )
 
     return df[mask]
@@ -48,8 +48,8 @@ def random_cuts(df):
         ((df["P_gtr_p"] <= 2.9) | (df["P_hgcer_npeSum"] > 1)) & # Or P>2.9 Gev
         (df["P_cal_etottracknorm"] < 0.8) &
         (df["CTime_ePiCoinTime_ROC1"]>30) & 
-        (df["CTime_ePiCoinTime_ROC1"]<46) &
-        (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
+        (df["CTime_ePiCoinTime_ROC1"]<46) 
+        # & (df["pt"]>0.3) & (df["pt"]<0.4) # cut for p_T binning
     )
 
     return df[mask]
@@ -59,8 +59,8 @@ def sim_cuts(df):
     """Apply physics cuts to DataFrame for SIMULATION."""
     mask = (
         (df["hsdelta"] > -8) & (df["hsdelta"] < 8) &
-        (df["ssdelta"] > -10) & (df["ssdelta"] < 22) &
-        (np.sqrt(df["pt2"])>0.3) & (np.sqrt(df["pt2"])<0.4) # cut for p_T binning
+        (df["ssdelta"] > -10) & (df["ssdelta"] < 22) 
+        # & (np.sqrt(df["pt2"])>0.3) & (np.sqrt(df["pt2"])<0.4) # cut for p_T binning
     )
     return df[mask]
 
@@ -147,7 +147,7 @@ def process_runs(runs_df, R, normfac, var_to_plot, run_type):
             # accumulate denominator
             eff = _get_eff(row.run_type, expr, row)
             dead = _get_dead(row.run_type, expr, row)
-            denom = row.BCM2_Q * eff * dead
+            denom = (row.BCM2_Q * eff * dead) / row.fan_current_correction
             if denom > 0:
                 sf_sum +=  denom
         return all_data, np.concatenate(all_weights), sf_sum
@@ -568,11 +568,13 @@ def plot_histogram_cryo(config, xlabel, title="", csv_path=None):
 def plot_2D(config, bins=100, range_=[(-1, 1), (-1, 1)]):
     x, y = make_histograms_2D(**config)
 
-    plt.figure(figsize=(17, 17))
+    plt.figure(figsize=(20, 17))
 
     cmap = plt.cm.plasma.copy()
     cmap.set_under("#f0f0f0", alpha=0)
     h = plt.hist2d(x, y, bins=bins, range=range_, cmap=cmap, vmin=1, alpha=1)
+    plt.colorbar(h[3], ax=plt.gca(), label="Events") # Add for colorbar
+
 
     ax = plt.gca()
     ax.tick_params(labelbottom=False, labelleft=False)
